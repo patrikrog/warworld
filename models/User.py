@@ -15,10 +15,10 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 class UserStats(enum.Enum):
-    Strength = 'strength'
-    Psyche = 'psyche'
-    Vitality = 'vitality'
-    Agility = 'agility'
+    Strength = 'Muscle'
+    Psyche = 'Smarts'
+    Vitality = 'Stamina'
+    Agility = 'Swiftness'
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'

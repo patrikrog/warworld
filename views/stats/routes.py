@@ -13,19 +13,19 @@ def stat_increase(stat_name):
     match stat_name:
         case UserStats.Strength.value:
             current_user.increase_stat(UserStats.Strength, 5)
-            flash('Increased strength!', 'info')
+            flash(f'Increased {UserStats.Strength.value}!', 'info')
             return redirect(url_for('.index'))
         case UserStats.Psyche.value:
             current_user.increase_stat(UserStats.Psyche, 5)
-            flash('Increased psyche!', 'info')
+            flash(f'Increased {UserStats.Psyche.value}!', 'info')
             return redirect(url_for('.index'))
         case UserStats.Vitality.value:
             current_user.increase_stat(UserStats.Vitality, 5)
-            flash('Increased vitality!', 'info')
+            flash(f'Increased {UserStats.Vitality.value}!', 'info')
             return redirect(url_for('.index'))
         case UserStats.Agility.value:
             current_user.increase_stat(UserStats.Agility, 5)
-            flash('Increased agility!', 'info')
+            flash(f'Increased {UserStats.Agility.value}!', 'info')
             return redirect(url_for('.index'))
 
 
@@ -40,4 +40,4 @@ def stats_reset():
 @bp.route("/")
 @login_required
 def index():
-    return render_template('stats/index.html')
+    return render_template('stats/index.html', UserStats=UserStats)

@@ -15,7 +15,7 @@ def login():
 def login_post():
     form = forms.LoginForm()
 
-    if not form.validate():
+    if not form.validate_on_submit():
         flash("Error with form.", "error")
         return redirect(url_for("auth.login"))
 
@@ -36,7 +36,7 @@ def register():
     form = forms.RegisterForm()
 
 
-    if request.method == "POST" and form.validate():
+    if request.method == "POST" and form.validate_on_submit():
         username = form.username.data
         email = form.email.data
         password = shared.bcrypt.generate_password_hash(form.password.data)

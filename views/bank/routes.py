@@ -7,14 +7,14 @@ from models.User import Bank
 
 @bp.route("/withdraw")
 @login_required
-def bank_withdraw():
+def withdraw():
     bank = Bank.query.filter_by(user_id=current_user.id).first()
     bank.withdraw(current_user, current_user.bank.cash)
     return redirect(url_for('.index'))
 
 @bp.route("/deposit")
 @login_required
-def bank_deposit():
+def deposit():
     bank = Bank.query.filter_by(user_id=current_user.id).first()
     bank.deposit(current_user, current_user.cash)
     return redirect(url_for('.index'))

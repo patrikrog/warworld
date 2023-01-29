@@ -72,15 +72,19 @@ class User(UserMixin, db.Model):
 
     def heal(self):
         cost = (self.max_health - self.current_health) * COST_PER_HEALTH_POINT
-        if not self.cash >= cost or not self.bank.cash >= cost:
-            return (False, 0)
+
+        if self.cash <= cost:
+            return "You can't afford healing."
+        if self.current_health >= self.max_health:
+            return "You don't seem to be needing a doctor right now."
         self.current_health = self.max_health
-        if self.cash < cost:
-            self.bank.cash -= cost
-        else:
-            self.cash -= cost
+
+        self.cash -= cost
+
+        if self.dead:
+            self.dead = False
         db.session.commit()
-        return (True, cost)
+        return f'You healed yourself! It cost you ${cost}.'
 
     def damage(self, amount):
         self.current_health -= amount

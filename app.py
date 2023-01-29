@@ -37,8 +37,11 @@ app.register_blueprint(jobs_bp, url_prefix="/jobs")
 from views.main import bp as main_bp
 app.register_blueprint(main_bp)
 
+
 @app.before_request
-@login_required
 def check_dead():
-    if current_user and current_user.check_dead():
+    if current_user.is_anonymous and not current_user.is_authenticated:
+        return
+
+    if current_user.check_dead():
         flash(f'You are dead! You should go to a doctor and get that checked out...', 'warning')

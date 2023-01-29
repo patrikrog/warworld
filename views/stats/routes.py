@@ -12,20 +12,20 @@ from models.User import User, Bank, UserStats
 def stat_increase(stat_name):
     match stat_name:
         case UserStats.Strength.value:
-            current_user.increase_stat(UserStats.Strength, 5)
-            flash(f'Increased {UserStats.Strength.value}!', 'info')
+            msg = current_user.increase_stat(UserStats.Strength, 5)
+            flash(msg, 'info')
             return redirect(url_for('.index'))
         case UserStats.Psyche.value:
-            current_user.increase_stat(UserStats.Psyche, 5)
-            flash(f'Increased {UserStats.Psyche.value}!', 'info')
+            msg = current_user.increase_stat(UserStats.Psyche, 5)
+            flash(msg, 'info')
             return redirect(url_for('.index'))
         case UserStats.Vitality.value:
-            current_user.increase_stat(UserStats.Vitality, 5)
-            flash(f'Increased {UserStats.Vitality.value}!', 'info')
+            msg = current_user.increase_stat(UserStats.Vitality, 5)
+            flash(msg, 'info')
             return redirect(url_for('.index'))
         case UserStats.Agility.value:
-            current_user.increase_stat(UserStats.Agility, 5)
-            flash(f'Increased {UserStats.Agility.value}!', 'info')
+            msg = current_user.increase_stat(UserStats.Agility, 5)
+            flash(msg, 'info')
             return redirect(url_for('.index'))
 
 

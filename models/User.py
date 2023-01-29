@@ -121,13 +121,22 @@ class User(UserMixin, db.Model):
         db.session.commit()
 
     def increase_stat(self, stat, amount):
+        # We don't want users adding stat points they don't have.
+        if self.stat_points <= 0:
+            msg = "You don't have enough stat points."
+            return msg
+
         match stat:
             case UserStats.Strength:
                 self.strength += amount
                 self.stat_points -= amount
+                msg = f"Increased {UserStats.Strength.value}."
+
             case UserStats.Psyche:
                 self.psyche += amount
                 self.stat_points -= amount
+                msg = f"Increased {UserStats.Psyche.value}."
+
             case UserStats.Vitality:
                 self.vitality += amount
                 if self.max_health < 1000:
@@ -135,12 +144,15 @@ class User(UserMixin, db.Model):
                 else:
                     self.max_health += amount * HEALTH_PER_POINT_DIMINISHED
                 self.stat_points -= amount
+                msg = f"Increased {UserStats.Vitality.value}."
+
             case UserStats.Agility:
                 self.agility += amount
                 self.stat_points -= amount
-            case _:
-                return
+                msg = f"Increased {UserStats.Agility.value}."
+
         db.session.commit()
+        return msg
 
     def __repr__(self):
         return f'<User {self.username}>'

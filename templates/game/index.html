@@ -5,10 +5,10 @@
 {% endblock %}
 {% block content %}
 <div class="content">
-	<a href='bank/deposit'>Deposit money</a>
+	<a href='{{ url_for("bank.deposit") }}'>Deposit money</a>
 	<br />
-	<a href='bank/withdraw'>Withdraw money</a>
+	<a href='{{ url_for("bank.withdraw") }}'>Withdraw money</a>
 	<br />
-	<a href='doctor/heal'>Heal</a>
+	<a href='{{ url_for("game.heal_player") }}'>Heal</a>
 </div>
 {% endblock %}

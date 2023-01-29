@@ -9,22 +9,22 @@
 		<tr>
 			<td> Muscle: </td>
 			<td> {{ current_user.strength }} </td>
-			<td> <a href='increase/strength'>+</a></td>
+			<td> <a href='increase/{{ UserStats.Strength.value }}'>+</a></td>
 		</tr>
 		<tr>
 			<td> Smarts: </td>
 			<td> {{ current_user.psyche }} </td>
-			<td> <a href='increase/psyche'>+</a></td>
+			<td> <a href='increase/{{ UserStats.Psyche.value }}'>+</a></td>
 		</tr>
 		<tr>
 			<td> Stamina: </td>
 			<td> {{ current_user.vitality }} </td>
-			<td> <a href='increase/vitality'>+</a></td>
+			<td> <a href='increase/{{ UserStats.Vitality.value }}'>+</a></td>
 		</tr>
 		<tr>
 			<td> Swiftness: </td>
 			<td> {{ current_user.agility }} </td>
-			<td> <a href='increase/agility'>+</a></td>
+			<td> <a href='increase/{{ UserStats.Agility.value }}'>+</a></td>
 		</tr>
 	</table>
 	<br />

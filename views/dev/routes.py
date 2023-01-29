@@ -21,7 +21,7 @@ def users():
             "cash": user.cash,
             "bank": bank.cash,
             'health': {'current_health': user.current_health, 'max_health': user.max_health, 'dead': user.dead},
-            "stats": {'strength': user.strength, 'psyche': user.psyche, 'vitality': user.vitality, 'agility': user.agility},
+            "stats": {'stat_points': user.stat_points, 'strength': user.strength, 'psyche': user.psyche, 'vitality': user.vitality, 'agility': user.agility},
             "password": user.password.decode(encoding="utf-8")
         })
     return users

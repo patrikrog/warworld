@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Index</h1> <br />
+    <h3>Log in</h3>
+    <form method="POST" action="{{ url_for("auth.login") }}">
+        {{ form.csrf_token }}
+        {{ form.username(class_="form-control",placeholder="Username") }}
+        {% for error in form.username.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.password(class_="form-control",placeholder="Password") }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+
+        <input type="submit" value="Log in">
+        </input>
+    </form>
+{% endblock %}

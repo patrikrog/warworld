@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Jobs{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Jobs</h1> <br />
+    <h3> Robberies </h3>
+    {%for robbery in robberies if current_user.level >= robbery.level_required%}
+        <a href='do/rob/{{ robbery.id }}'>{{ robbery.name }}</a> - XP: {{ robbery.min_exp }}-{{robbery.max_exp}} - Cash: ${{ robbery.min_cash }}-{{robbery.max_cash}} [Min. level: {{ robbery.level_required }}]
+        <br /><br />
+    {%endfor%}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Register</h1>
+    <form action="{{ url_for("auth.register") }}" method="POST">
+        {{ form.csrf_token }}
+
+        {{ form.username(class_="form-control",placeholder="Username") }}
+        {% for error in form.username.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.email(class_="form-control",placeholder="Email") }}
+        {% for error in form.email.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        {{ form.password(class_="form-control",placeholder="Password") }}
+        {% for error in form.password.errors %}
+            {{ error }}
+        {% endfor %}
+        <br />
+        <input type="submit" value="Register">
+        </input>
+    </form>
+{% endblock %}

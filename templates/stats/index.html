@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}City{% endblock %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="content">
+	<table>
+		<tr>
+			<td> Muscle: </td>
+			<td> {{ current_user.strength }} </td>
+			<td> <a href='increase/strength'>+</a></td>
+		</tr>
+		<tr>
+			<td> Smarts: </td>
+			<td> {{ current_user.psyche }} </td>
+			<td> <a href='increase/psyche'>+</a></td>
+		</tr>
+		<tr>
+			<td> Stamina: </td>
+			<td> {{ current_user.vitality }} </td>
+			<td> <a href='increase/vitality'>+</a></td>
+		</tr>
+		<tr>
+			<td> Swiftness: </td>
+			<td> {{ current_user.agility }} </td>
+			<td> <a href='increase/agility'>+</a></td>
+		</tr>
+	</table>
+	<br />
+	<a href='reset'>Reset your stats</a>
+</div>
+{% endblock %}

@@ -11,6 +11,7 @@ weapon = [
     Weapon(name='Kitchen knife', min_damage=5, max_damage=10, level_required=15, strength_required=25, rob_chance=50, attack_speed=6, cost=500),
     Weapon(name='Chainsaw', min_damage=12, max_damage=16, level_required=30, strength_required=50, rob_chance=100, attack_speed=8, cost=1200),
     Weapon(name='Luger', min_damage=20, max_damage=30, level_required=50, strength_required=100, rob_chance=180, attack_speed=4, cost=2400),
+    Weapon(name='Mosin Nagant', min_damage=32, max_damage=45, level_required=70, strength_required=150, rob_chance=240, attack_speed=9, cost=5000),
 ]
 
 [shared.db.session.add(x) for x in weapon]

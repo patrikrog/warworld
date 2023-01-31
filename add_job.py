@@ -11,6 +11,7 @@ robbery = [
     Robbery(name='Rob the gas station', min_exp=15, max_exp=30, min_cash=45, max_cash=70, level_required=15, min_damage=3, max_damage=5, difficulty=50, timeout=10),
     Robbery(name='Scam pensioners', min_exp=30, max_exp=50, min_cash=60, max_cash=110, level_required=30, min_damage=5, max_damage=10, difficulty=100, timeout=30),
     Robbery(name='Rob the supermarket', min_exp=50, max_exp=80, min_cash=110, max_cash=150, level_required=50, min_damage=10, max_damage=30, difficulty=180, timeout=100),
+    Robbery(name='Rob a furniture store', min_exp=90, max_exp=120, min_cash=150, max_cash=200, level_required=80, min_damage=40, max_damage=80, difficulty=260, timeout=150),
 ]
 
 [shared.db.session.add(x) for x in robbery]

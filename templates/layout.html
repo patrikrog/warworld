@@ -31,7 +31,8 @@
                 <i><a href='/profile'>{{ current_user.username }}</a></i>
                 | <a href='/city/doctor/heal'>Health:</a> {{ current_user.current_health }} / {{ current_user.max_health }}
                 | Level: {{ current_user.level }}
-                | XP: {{ current_user.current_exp }} / {{ current_user.next_level }}
+                {% set current_exp = ((current_user.current_exp / current_user.next_level) | float) * 100 %}
+                | XP: {{ '%0.1f' % current_exp }}%
                 | Cash: ${{ current_user.cash }}
                 | Bank : ${{ current_user.bank.cash }}
                 | Stat points: {{ current_user.stat_points }}

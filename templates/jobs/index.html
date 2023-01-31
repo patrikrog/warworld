@@ -7,7 +7,7 @@
     <h1>Jobs</h1> <br />
     <h3> Robberies </h3>
     {%for robbery in robberies if current_user.level >= robbery.level_required%}
-        <a href='do/rob/{{ robbery.id }}'>{{ robbery.name }}</a> - XP: {{ robbery.min_exp }}-{{robbery.max_exp}} - Cash: ${{ robbery.min_cash }}-{{robbery.max_cash}} [Min. level: {{ robbery.level_required }}]
+        <a href='do/rob/{{ robbery.id }}'>{{ robbery.name }}</a> - XP: {{ robbery.min_exp }}-{{robbery.max_exp}} - Cash: ${{ robbery.min_cash }}-{{robbery.max_cash}} [Min. level: {{ robbery.level_required }}] | Timeout: {{ 1 if (robbery.timeout - current_user.psyche) < 1 else (robbery.timeout - current_user.psyche) }} ({{ robbery.timeout }}) - {{ '%0.f' % ((robbery.chance(current_user.equipped_weapon)|float) * 100) }}% chance to succeed.
         <br /><br />
     {%endfor%}
 {% endblock %}

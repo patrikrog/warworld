@@ -1,7 +1,9 @@
 import enum
+import time
 
 from models.shared import db, login_manager
-from flask_login import UserMixin, login_user
+from flask_login import UserMixin, login_user, logout_user
+from models.Weapon import Weapon
 
 EXP_INCREASE_PER_LEVEL=5
 MAX_EXP_CAP=1000
@@ -40,6 +42,9 @@ class User(UserMixin, db.Model):
     agility = db.Column(db.Integer, default=0)
     vitality = db.Column(db.Integer, default=0)
 
+    equipped_weapon = db.Column(db.Integer, db.ForeignKey('weapon.id'), default=1)
+
+    last_robbery = db.Column(db.Integer, nullable=False, default=int(time.time()))
 
     level = db.Column(db.Integer, nullable=False, default=1)
     stat_points = db.Column(db.Integer, default=0)
@@ -47,6 +52,19 @@ class User(UserMixin, db.Model):
     next_level = db.Column(db.Integer, nullable=False, default=50)
     cash = db.Column(db.Integer, default=0)
     bank = db.relationship('Bank', backref=db.backref('user', cascade='delete'), uselist=False)
+
+    def buy_weapon(self, weapon_id):
+        weapon = Weapon.query.filter_by(id=weapon_id).first()
+        if not weapon:
+            return "That weapon doesn't exist."
+        if self.cash < weapon.cost:
+            return "You don't have enough money to buy that."
+        if self.strength < weapon.strength_required:
+            return f"You don't have enough {UserStats.Strength.value} to hold that weapon, weakling."
+        self.equipped_weapon = weapon_id
+        self.cash -= weapon.cost
+        db.session.commit()
+        return f'You bought {weapon.name} for ${weapon.cost}!'
 
     def check_dead(self):
         if not self.current_health <= 0:
@@ -108,6 +126,7 @@ class User(UserMixin, db.Model):
             self.level += 1
             self.current_exp = remainder
             self.stat_points += STAT_POINTS_PER_LEVEL
+        self.last_robbery = int(time.time())
         db.session.commit()
 
     def reset_stats(self):

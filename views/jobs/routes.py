@@ -8,15 +8,15 @@ from models import shared
 from models.User import User
 from models.Job import Robbery
 
-@bp.route('/do/rob/<id>')
+@bp.route('/do/rob/<int:job_id>')
 @login_required
-def do_robbery(id):
-    robbery = Robbery.query.filter_by(id=id).first()
+def do_robbery(job_id):
+    robbery = Robbery.query.filter_by(id=job_id).first()
     if not robbery:
         flash("Invalid robbery id", 'error')
         return redirect(url_for('.index'))
-    exp, cash = robbery.do_robbery(user=current_user)
-    flash(f'You did the job! You got {exp} XP and ${cash}!', 'info')
+    msg = robbery.do_robbery(user=current_user)
+    flash(msg, 'info')
     return redirect(url_for('.index'))
 
 

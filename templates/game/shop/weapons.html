@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Weapon Shop{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+{% block content %}
+    <h1>Weapons</h1> <br />
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Damage</th>
+				<th>Level</th>
+				<th>Muscle required</th>
+				<th>Attack speed</th>
+				<th>Cost</th>
+			</tr>
+			{%for weapon in weapons%}
+			<tr>
+				<td>{{ weapon.name }}</td>
+				<td>{{ weapon.min_damage }} - {{ weapon.max_damage }}</td>
+				<td>{{ weapon.level_required }}</td>
+				<td>{{ weapon.strength_required }}</td>
+				<td>{{ weapon.attack_speed }} s</td>
+				<td>${{ weapon.cost }}</td>
+				{%set weapon_id = weapon.id%}
+				<td><a href="{{ url_for('game.buy_weapon', weapon_id=weapon_id) }}">Buy</td>
+			</tr>
+			{%endfor%}
+		</table>
+{% endblock %}

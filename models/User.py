@@ -61,6 +61,9 @@ class User(UserMixin, db.Model):
             return "You don't have enough money to buy that."
         if self.strength < weapon.strength_required:
             return f"You don't have enough {UserStats.Strength.value} to hold that weapon, weakling."
+        if self.equipped_weapon == weapon_id:
+            return f"You already have this weapon equipped."
+
         self.equipped_weapon = weapon_id
         self.cash -= weapon.cost
         db.session.commit()

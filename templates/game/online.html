@@ -8,11 +8,13 @@
 	<tr>
 		<th>Name</th>
 		<th>Level</th>
+		<th>Cash on hand</th>
 	</tr>
 	{%for player in online_players %}
 		<tr>
 			<td>{{ player.username }}</td>
 			<td>{{ player.level }}</td>
+			<td>${{ player.cash }}</td>
 		</tr>
 	{%endfor%}
 </table>

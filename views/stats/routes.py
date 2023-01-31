@@ -15,14 +15,17 @@ def stat_increase(stat_name):
             msg = current_user.increase_stat(UserStats.Strength, 5)
             flash(msg, 'info')
             return redirect(url_for('.index'))
+
         case UserStats.Psyche.value:
             msg = current_user.increase_stat(UserStats.Psyche, 5)
             flash(msg, 'info')
             return redirect(url_for('.index'))
+
         case UserStats.Vitality.value:
             msg = current_user.increase_stat(UserStats.Vitality, 5)
             flash(msg, 'info')
             return redirect(url_for('.index'))
+
         case UserStats.Agility.value:
             msg = current_user.increase_stat(UserStats.Agility, 5)
             flash(msg, 'info')

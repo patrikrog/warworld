@@ -1,10 +1,16 @@
 from flask import (request, render_template,
                    flash, redirect, url_for)
-
+from flask_login import current_user, login_required
 
 from views.auth import bp, forms
 from models import shared
 from models.User import User
+
+@bp.route('/logout')
+@login_required
+def logout():
+    current_user.logout()
+    return redirect(url_for('main.index'))
 
 
 @bp.route('/login')
@@ -34,7 +40,6 @@ def login_post():
 @bp.route('/register', methods=['POST', 'GET'])
 def register():
     form = forms.RegisterForm()
-
 
     if request.method == "POST" and form.validate_on_submit():
         username = form.username.data

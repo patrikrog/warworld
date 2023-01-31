@@ -79,6 +79,8 @@ class User(UserMixin, db.Model):
 
     def logout(self):
         self.online = False
+        logout_user()
+        db.session.commit()
 
     def validate_email(self, email):
         if User.query.filter_by(email=email).first():

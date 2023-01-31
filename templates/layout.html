@@ -22,6 +22,7 @@
                 <li class="nav-item"><a class="nav-link {% if request.url_rule.endpoint == "game.index" %}active{% endif %}" href="{{ url_for('game.index') }}">Index</a></li>
                 <li class="nav-item"><a class="nav-link {% if request.url_rule.endpoint == "jobs.index" %}active{% endif %}" href="{{ url_for('jobs.index') }}">Jobs</a></li>
                 <li class="nav-item"><a class="nav-link {% if request.url_rule.endpoint == "stats.index" %}active{% endif %}" href="{{ url_for('stats.index') }}">Stats</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Log out</a></li>
                 {%endif%}
             </ul>
         </nav>

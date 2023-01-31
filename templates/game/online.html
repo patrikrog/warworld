@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Online players{% endblock %}
+{% block head %}
+	{{ super() }}
+{% endblock %}
+{% block content %}
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Level</th>
+	</tr>
+	{%for player in online_players %}
+		<tr>
+			<td>{{ player.username }}</td>
+			<td>{{ player.level }}</td>
+		</tr>
+	{%endfor%}
+</table>
+{% endblock %}

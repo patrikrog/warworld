@@ -5,6 +5,13 @@ from flask_login import login_required, current_user
 from views.game import bp
 
 from models.Weapon import Weapon
+from models.User import User
+
+@bp.route('/online')
+@login_required
+def online_players():
+    online_players = User.query.filter_by(online=True).all()
+    return render_template('game/online.html', online_players=online_players)
 
 @bp.route('/doctor/heal')
 @login_required

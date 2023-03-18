@@ -1,5 +1,0 @@
-#+title:
-*** TODO:
-- Implementera en admin-panel/sida, för att kunna enkelt skapa nya jobb, föremål etc.
-- Implementera meddelanden/PM funktion.
-- Implementera rån av andra användare
